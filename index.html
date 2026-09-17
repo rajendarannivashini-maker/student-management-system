@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Management System</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>🎓 Student Management System</h1>
+    <p class="subtitle">CRUD demo — HTML/CSS/JS frontend • Django REST backend</p>
+  </header>
+
+  <main class="container">
+
+    <section class="toolbar">
+      <input type="text" id="searchInput" placeholder="Search by name, roll no, or email..." />
+      <select id="yearFilter">
+        <option value="">All Years</option>
+        <option value="1">1st Year</option>
+        <option value="2">2nd Year</option>
+        <option value="3">3rd Year</option>
+        <option value="4">4th Year</option>
+      </select>
+      <button id="refreshBtn">🔄 Refresh</button>
+      <button id="addBtn" class="primary">+ Add Student</button>
+    </section>
+
+    <div id="message" class="message" hidden></div>
+
+    <section class="table-wrapper">
+      <table id="studentTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Roll No.</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+          <!-- rows injected by script.js -->
+        </tbody>
+      </table>
+      <p id="emptyState" class="empty-state" hidden>No students found. Click "Add Student" to create one.</p>
+    </section>
+
+  </main>
+
+  <!-- Add / Edit modal -->
+  <div id="studentModal" class="modal" hidden>
+    <div class="modal-content">
+      <h2 id="modalTitle">Add Student</h2>
+      <form id="studentForm">
+        <input type="hidden" id="studentId" />
+
+        <label for="name">Name</label>
+        <input type="text" id="name" required />
+        <span class="error" id="nameError"></span>
+
+        <label for="rollNumber">Roll Number</label>
+        <input type="text" id="rollNumber" required />
+        <span class="error" id="rollNumberError"></span>
+
+        <label for="department">Department</label>
+        <input type="text" id="department" required />
+        <span class="error" id="departmentError"></span>
+
+        <label for="year">Year</label>
+        <select id="year" required>
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
+        </select>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+        <span class="error" id="emailError"></span>
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" required placeholder="10-digit number" />
+        <span class="error" id="phoneError"></span>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn">Cancel</button>
+          <button type="submit" class="primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete confirmation modal -->
+  <div id="deleteModal" class="modal" hidden>
+    <div class="modal-content small">
+      <h2>Delete student?</h2>
+      <p id="deleteMessage"></p>
+      <div class="modal-actions">
+        <button type="button" id="cancelDeleteBtn">Cancel</button>
+        <button type="button" id="confirmDeleteBtn" class="danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
